@@ -5,6 +5,9 @@
 	<artifactId>log4jdbc4</artifactId>
 	<version>1.2</version>
 
+	<properties>
+		<j2se.version>1.6</j2se.version>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -12,4 +15,33 @@
 			<version>1.6.0</version>
 		</dependency>
 	</dependencies>
+
+	<distributionManagement>
+		<repository>
+			<id>thirdparty</id>
+			<name>thirdparty</name>
+			<url>http://localhost:8081/nexus/content/repositories/thirdparty/</url>
+		</repository>
+	</distributionManagement>
+	<build>
+		<plugins>
+			<!-- 要将源码放上去，需要加入这个插件 -->
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<configuration>
+					<attach>true</attach>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
